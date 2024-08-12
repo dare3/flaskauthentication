@@ -12,7 +12,7 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql:///flask-feedback"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ECHO'] = True
-app.config['SECRET_KEY'] = "shhhhh"
+app.config['SECRET_KEY'] = "oloriremade"
 app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
 
 toolbar = DebugToolbarExtension(app)
@@ -127,8 +127,8 @@ def new_feedback(username):
         db.session.add(feedback)
         db.session.commit()
         return redirect(f"/users/{feedback.username}")
-
-    return render_template("feedback/new.html", form=form)
+    else:
+        return render_template("feedback/new.html", form=form)
 
 @app.route("/feedback/<int:feedback_id>/update", methods=["GET", "POST"])
 def update_feedback(feedback_id):
